@@ -1,0 +1,35 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "airbnb",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "linebreak-style": ["error", "unix"]
+  },
+  "parser": "babel-eslint",
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parser": "typescript-eslint-parser",
+      "plugins": ["typescript"],
+      "rules": {
+        "import-name": [
+          true,
+          {
+            "react": "React"
+          }
+        ]
+      }
+    }
+  ]
+}

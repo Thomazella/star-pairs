@@ -1,0 +1,13 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["defaults", "not ie 11", "not operamini all", "not <0.15%"]
+      },
+      "debug": false
+    }],
+  "stage-2",
+  "react"
+  ],
+  "plugins": [ "styled-components"]
+}
