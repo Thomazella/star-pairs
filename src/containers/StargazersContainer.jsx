@@ -2,6 +2,7 @@ import React from "react";
 import { Container } from "reakit";
 import countStars from "../utils/countStars";
 import githubData from "../utils/githubData";
+import findPossiblePairs from "../utils/findPossiblePairs";
 import { profileOf } from "../utils/queries";
 
 const initialState = {
@@ -18,6 +19,8 @@ const avatarOf = async user => {
   return profile.avatar_url;
 };
 
+const assertStars = async (user, goal) => goal === (await countStars(user));
+
 const actions = {
   setUser: user => () => ({ user }),
   setUserStars: UserStars => () => ({ UserStars }),
@@ -29,7 +32,17 @@ const effects = {
   start: (user, depth) => async ({ setState }) => {
     const stars = await countStars(user);
     const userAvatar = await avatarOf(user);
-    setState(state => ({ userStars: stars, avatar: userAvatar }));
+    const candidates = await findPossiblePairs(user, depth);
+    const promises = candidates.map(candidate =>
+      countStars(candidate).then(theirStars => {
+        setState(state => ({ peopleCount: state.peopleCount + 1 }));
+        return { name: candidate, theirStars };
+      })
+    );
+    const candidateStars = await promises;
+    console.log(candidates);
+
+    setState(() => ({ userStars: stars, avatar: userAvatar }));
     if (!depth) setState({ depth: 1 });
   }
 };

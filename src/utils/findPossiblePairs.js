@@ -1,3 +1,4 @@
+import { uniq } from "lodash";
 import githubData from "./githubData";
 import { reposFrom, issuesIn } from "./queries";
 
@@ -12,7 +13,7 @@ const findPossiblePairs = async (user, depth) => {
     return [...acc, ...data];
   }, []);
 
-  return issues.map(issue => issue && issue.user && issue.user.login);
+  return uniq(issues.map(issue => issue && issue.user && issue.user.login));
 };
 
 export default findPossiblePairs;

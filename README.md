@@ -1,4 +1,4 @@
-# react-notepad
+# star-pairs
 <p>
   <a href="https://travis-ci.org/Thomazella/star-pairs"><img src="https://img.shields.io/travis/Thomazella/star-pairs/master.svg?style=flat-square" alt="Build Status" /></a>
   <a href="https://github.com/prettier/prettier">

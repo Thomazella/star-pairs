@@ -1,9 +1,6 @@
 import React, { Fragment } from "react";
 import { Flex, Paragraph, Button, styled, Image } from "reakit";
-import countStars from "../utils/countStars";
 import StargazersContainer from "../containers/StargazersContainer";
-
-const assertStars = async (user, goal) => goal === (await countStars(user));
 
 const zeroIsOk = n => {
   if (n >= 0 && typeof n === "number") return true;
