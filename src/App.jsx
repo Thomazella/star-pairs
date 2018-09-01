@@ -1,10 +1,19 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Provider from "reakit/Provider";
 import StargazersContainer from "./containers/StargazersContainer";
+import Header from "./components/Header";
+import UserRegistration from "./components/UserRegistration";
 
 const App = (
   <Provider devtools>
-    <StargazersContainer>{() => <p>Testing fetch</p>}</StargazersContainer>
+    <StargazersContainer>
+      {() => (
+        <Fragment>
+          <Header />
+          <UserRegistration />
+        </Fragment>
+      )}
+    </StargazersContainer>
   </Provider>
 );
 

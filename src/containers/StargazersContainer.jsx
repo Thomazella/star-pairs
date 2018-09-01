@@ -1,26 +1,21 @@
 import React from "react";
 import { Container } from "reakit";
-import countStars from "../utils/countStars";
-import githubData from "../utils/githubData";
-import { profileOf } from "../utils/queries";
 
 const initialState = {
-  stars: 0,
-  pairs: []
+  userStars: undefined,
+  pairs: [],
+  user: "",
+  depth: 3,
+  peopleCount: 0
 };
 
-const USER = "diegohaz";
-const DEPTH = 25;
+const effects = {};
 
-const assertStars = async (user, goal) => goal === (await countStars(user));
-
-const avatarOf = async user => {
-  const profile = await githubData(profileOf(user));
-  return profile.avatar_url;
-};
-
-const onMount = async ({ setState }) => {
-  // const foo = await findPossiblePairs(USER, 3);
+const actions = {
+  setUser: user => () => ({ user }),
+  setUserStars: UserStars => () => ({ UserStars }),
+  setDepth: depth => () => ({ depth }),
+  countPerson: () => state => ({ peopleCount: state.peopleCount + 1 })
 };
 
 const StargazersContainer = props => {
@@ -30,7 +25,9 @@ const StargazersContainer = props => {
     <Container
       {...props}
       initialState={{ ...initialState, ...propsInitialState }}
-      onMount={onMount}
+      effect={effects}
+      actions={actions}
+      context="space"
     />
   );
 };

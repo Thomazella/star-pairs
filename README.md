@@ -10,7 +10,7 @@
 API
 ✔✔ fetch stars from username
   ✔✔ reduce stars from repo array
-✔ fetch profile pics from username
+✔✔ fetch profile pics from username
 ✔✔ fetch repos from username
 ✔✔ fetch people from repo issues
 
