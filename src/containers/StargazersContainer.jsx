@@ -1,21 +1,27 @@
 import React from "react";
 import { Container } from "reakit";
+import countStars from "../utils/countStars";
 
 const initialState = {
   userStars: undefined,
   pairs: [],
   user: "",
-  depth: 3,
+  depth: 1,
   peopleCount: 0
 };
-
-const effects = {};
 
 const actions = {
   setUser: user => () => ({ user }),
   setUserStars: UserStars => () => ({ UserStars }),
   setDepth: depth => () => ({ depth }),
   countPerson: () => state => ({ peopleCount: state.peopleCount + 1 })
+};
+
+const effects = {
+  start: (user, depth) => async ({ setState }) => {
+    const stars = await countStars(user);
+    setState(state => ({ userStars: stars }));
+  }
 };
 
 const StargazersContainer = props => {
@@ -25,7 +31,7 @@ const StargazersContainer = props => {
     <Container
       {...props}
       initialState={{ ...initialState, ...propsInitialState }}
-      effect={effects}
+      effects={effects}
       actions={actions}
       context="space"
     />

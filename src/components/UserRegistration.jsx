@@ -1,35 +1,34 @@
 import React from "react";
 import { Field, Flex, Input, styled } from "reakit";
-import StateContainer from "../containers/StateContainer";
-
-const initialState = {
-  number: 1,
-  text: ""
-};
+import StargazersContainer from "../containers/StargazersContainer";
 
 const Wrapper = styled(Flex)``;
 
 const UserRegistration = props => (
   <Wrapper {...props}>
-    <StateContainer initialState={initialState}>
-      {({ number, text, set }) => (
+    <StargazersContainer>
+      {({ user, depth, setUser, setDepth }) => (
         <Field>
           <Input
             placeholder="your name"
-            value={text}
-            onChange={e => set({ text: e.target.value })}
+            value={user}
+            onChange={e => setUser(e.target.value)}
           />
-          <Input
-            type="range"
-            name="depth"
-            min="1"
-            max="500"
-            value={number}
-            onChange={e => set({ number: e.target.value })}
-          />
+          <label htmlFor="depthrange">
+            {"Distance to search"}
+            <Input
+              type="range"
+              id="depthrange"
+              name="depth"
+              min="1"
+              max="500"
+              value={depth}
+              onChange={e => setDepth(e.target.value)}
+            />
+          </label>
         </Field>
       )}
-    </StateContainer>
+    </StargazersContainer>
   </Wrapper>
 );
 
