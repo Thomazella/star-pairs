@@ -3,6 +3,7 @@ import Provider from "reakit/Provider";
 import StargazersContainer from "./containers/StargazersContainer";
 import Header from "./components/Header";
 import UserRegistration from "./components/UserRegistration";
+import Results from "./components/Results";
 
 const App = (
   <Provider devtools>
@@ -11,6 +12,7 @@ const App = (
         <Fragment>
           <Header />
           <UserRegistration />
+          <Results text="asdfs" />
         </Fragment>
       )}
     </StargazersContainer>
