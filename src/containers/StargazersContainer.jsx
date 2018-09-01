@@ -1,13 +1,21 @@
 import React from "react";
 import { Container } from "reakit";
 import countStars from "../utils/countStars";
+import githubData from "../utils/githubData";
+import { profileOf } from "../utils/queries";
 
 const initialState = {
   userStars: undefined,
   pairs: [],
   user: "",
-  depth: 1,
-  peopleCount: 0
+  depth: 0,
+  peopleCount: 0,
+  avatar: undefined
+};
+
+const avatarOf = async user => {
+  const [profile] = await githubData(profileOf(user));
+  return profile.avatar_url;
 };
 
 const actions = {
@@ -20,7 +28,9 @@ const actions = {
 const effects = {
   start: (user, depth) => async ({ setState }) => {
     const stars = await countStars(user);
-    setState(state => ({ userStars: stars }));
+    const userAvatar = await avatarOf(user);
+    setState(state => ({ userStars: stars, avatar: userAvatar }));
+    if (!depth) setState({ depth: 1 });
   }
 };
 

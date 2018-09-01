@@ -4,7 +4,7 @@ import StargazersContainer from "../containers/StargazersContainer";
 
 const Wrapper = styled(Flex)``;
 
-const UserRegistration = props => (
+const UserInput = props => (
   <Wrapper {...props}>
     <StargazersContainer>
       {({ user, depth, setUser, setDepth }) => (
@@ -32,4 +32,4 @@ const UserRegistration = props => (
   </Wrapper>
 );
 
-export default UserRegistration;
+export default UserInput;
